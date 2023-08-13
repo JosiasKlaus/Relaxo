@@ -1,25 +1,15 @@
 <script lang="ts">
   import { Group, NumberInput, Stack, TextInput } from "@svelteuidev/core";
+  import { createEventDispatcher } from "svelte";
 
   function onSchoolNumberChange(e: CustomEvent<number>) {
     const value: string = e.detail.toString();
     if (value.length == 4) {
-      fetch(`https://lerncamp.its-hosted.de/api/info?schoolNumber=${value}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          response.json().then((data) => {
-            console.log(data);
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      dispatch("schoolNumberChange", value);
     }
   }
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <Stack spacing="sm">
