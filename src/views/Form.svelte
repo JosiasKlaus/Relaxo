@@ -102,7 +102,6 @@
       <Checkbox
         label="Ich habe die Datenschutzbestimmungen gelesen und erkläre mich damit einverstanden."
         name="terms_and_conditions"
-        style="flex-grow: 1;"
       />
       <Button style="margin-left: auto; max-width: fit-content;" type="button"
         >Abschicken</Button
