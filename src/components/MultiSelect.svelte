@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Chip, Group, NativeSelect } from "@svelteuidev/core";
+  import { Chip, Group, NativeSelect, Space } from "@svelteuidev/core";
   let values: string[] = [];
 
   export let options: string[];
@@ -26,7 +26,8 @@
 <input type="hidden" {name} bind:value={values} />
 <NativeSelect data={options} {label} {description} required={required && values.length == 0} placeholder="Bitte auswählen" on:change={onOptionSelect} />
 {#if values.length > 0}
-  <Group spacing="md" style="margin-top: 0.5rem;">
+  <Space />
+  <Group spacing="md">
     {#each values as item}
       <Chip
         checked={false}
@@ -38,4 +39,5 @@
       />
     {/each}
   </Group>
+  <Space />
 {/if}

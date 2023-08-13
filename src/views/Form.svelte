@@ -60,9 +60,8 @@
 <form on:submit|preventDefault={onSubmit}>
   <!-- Header -->
   <Stack>
-    <Title order={1} style="margin-bottom: 2rem;"
-      >Antragsformular Löwenstark</Title
-    >
+    <Title order={1}>Antragsformular Löwenstark</Title>
+    <Space h="md" />
     <Text size="lg" align="justify" style="line-height: 1.5;">
       Das Hessische Landesprogramm „Löwenstark – der BildungsKICK“ unterstützt
       Schülerinnen und Schüler dabei, die entstandenen Lernrückstände infolge
@@ -83,23 +82,24 @@
   </Stack>
 
   <!-- School -->
+  <Space h="xl" />
   <Divider
-    style="margin: 2rem 0;"
     label="Schulinformationen"
     labelPosition="center"
   />
+  <Space h="xl" />
   <School />
 
   <!-- Entries -->
   {#each components as component, index}
+    <Space h="xl" />
     {#if index == 0}
       <Divider
-        style="margin: 2rem 0;"
         label="Maßnahme {index + 1}"
         labelPosition="center"
       />
     {:else}
-      <Divider style="margin: 2rem 0;" labelPosition="center">
+      <Divider labelPosition="center">
         <Button
           variant="subtle"
           size="xs"
@@ -115,6 +115,7 @@
         </Button>
       </Divider>
     {/if}
+    <Space h="xl" />
     <svelte:component
       this={component}
       {index}
@@ -123,16 +124,17 @@
     />
   {/each}
   <Space h="xl" />
-  <Button type="button" variant="light" style="margin" on:click={addEntry}>
+  <Button type="button" variant="light" on:click={addEntry}>
     <Plus slot="leftIcon" />Weitere Maßnahme hinzufügen
   </Button>
 
   <!-- Footer -->
+  <Space h="xl" />
   <Divider
-    style="margin: 2rem 0;"
     label="Zusammenfassung"
     labelPosition="center"
   />
+  <Space h="xl" />
   <Stack>
     <Text size="lg" weight={"bold"} align="justify" style="line-height: 1.5;">
       Hiermit beantrage ich für die Umsetzung des Landesprogramms „Löwenstark –
@@ -160,7 +162,8 @@
       wird das Datum des elektronischen Eingangs im Hessischen Kultusministerium
       berücksichtigt.
     </Text>
-    <Group noWrap style="margin-top: 2rem;">
+    <Space h="xl" />
+    <Group noWrap>
       <Checkbox
         label="Ich habe die Datenschutzbestimmungen gelesen und erkläre mich damit einverstanden."
         name="terms_and_conditions"
