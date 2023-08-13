@@ -39,3 +39,10 @@
     </Text>
   </Group>
 </SvelteUIProvider>
+
+<!-- Make sure required indicator is red -->
+<style>
+  :global(span.required) {
+    color: red;
+  }
+</style>
