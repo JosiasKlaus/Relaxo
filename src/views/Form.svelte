@@ -7,19 +7,57 @@
     Checkbox,
     Button,
     Divider,
+    Space,
   } from "@svelteuidev/core";
   import School from "./School.svelte";
   import Entry from "./Entry.svelte";
-  import { Plus } from "radix-icons-svelte";
+  import { Container, Eraser, Plus } from "radix-icons-svelte";
 
   let components = [Entry];
-
   function addEntry() {
     components = [...components, Entry];
   }
+
+  function removeEntry(index: number) {
+    components = components.filter((_, i) => i !== index);
+  }
+
+  function onSubmit(e: Event) {
+    const data = new FormData(e.target as HTMLFormElement);
+    const json = Object.fromEntries(data.entries());
+    console.log(json);
+  }
+
+  /* Handling of entry component emitted custom events to display cost sums */
+  const entry_costs = new Map<number, { staff: number; material: number }>();
+  let staff_cost = 0,
+    material_cost = 0;
+
+  function onStaffCostChange(e: CustomEvent<{ index: number; value: number }>) {
+    const { index, value } = e.detail;
+    entry_costs.set(index, { ...entry_costs.get(index), staff: Number(value) });
+    staff_cost = 0;
+    entry_costs.forEach(
+      (costs) => (staff_cost += costs.staff ? costs.staff : 0)
+    );
+  }
+
+  function onMaterialCostsChange(
+    e: CustomEvent<{ value: string; index: number }>
+  ) {
+    const { index, value } = e.detail;
+    entry_costs.set(index, {
+      ...entry_costs.get(index),
+      material: Number(value),
+    });
+    material_cost = 0;
+    entry_costs.forEach(
+      (costs) => (material_cost += costs.material ? costs.material : 0)
+    );
+  }
 </script>
 
-<form>
+<form on:submit|preventDefault={onSubmit}>
   <!-- Header -->
   <Stack>
     <Title order={1} style="margin-bottom: 2rem;"
@@ -54,14 +92,38 @@
 
   <!-- Entries -->
   {#each components as component, index}
-    <Divider
-      style="margin: 2rem 0;"
-      label="Maßnahme {index + 1}"
-      labelPosition="center"
+    {#if index == 0}
+      <Divider
+        style="margin: 2rem 0;"
+        label="Maßnahme {index + 1}"
+        labelPosition="center"
+      />
+    {:else}
+      <Divider style="margin: 2rem 0;" labelPosition="center">
+        <Button
+          variant="subtle"
+          size="xs"
+          color="red"
+          compact
+          slot="label"
+          type="button"
+          on:click={() => {
+            removeEntry(index);
+          }}
+        >
+          <Eraser slot="rightIcon" /> Maßnahme {index + 1}
+        </Button>
+      </Divider>
+    {/if}
+    <svelte:component
+      this={component}
+      {index}
+      on:staff_cost_change={onStaffCostChange}
+      on:material_cost_change={onMaterialCostsChange}
     />
-    <svelte:component this={component} {index} />
   {/each}
-  <Button type="button" variant="light" on:click={addEntry}>
+  <Space h="xl" />
+  <Button type="button" variant="light" style="margin" on:click={addEntry}>
     <Plus slot="leftIcon" />Weitere Maßnahme hinzufügen
   </Button>
 
@@ -77,8 +139,8 @@
       der BildungsKICK“ zusätzliche Mittel für in Höhe von
     </Text>
     <Text size="lg" style="line-height: 2;">
-      0,00€ für Personalausgaben und<br />
-      0,00€ für Sachausgaben
+      {staff_cost}€ für Personalausgaben und<br />
+      {material_cost}€ für Sachausgaben
     </Text>
     <Text size="lg" align="justify" style="line-height: 1.5;">
       Bitte senden Sie das Formular nach dem Ausfüllen ab. Drucken Sie das
@@ -103,7 +165,7 @@
         label="Ich habe die Datenschutzbestimmungen gelesen und erkläre mich damit einverstanden."
         name="terms_and_conditions"
       />
-      <Button style="margin-left: auto; max-width: fit-content;" type="button"
+      <Button style="margin-left: auto; max-width: fit-content;" type="submit"
         >Abschicken</Button
       >
     </Group>
