@@ -1,15 +1,28 @@
 <script lang="ts">
   import { Group, NumberInput, Stack, TextInput } from "@svelteuidev/core";
-  import { createEventDispatcher } from "svelte";
-
+  import { BACKEND_URL } from "../main";
+  
+  let school: School = {};
   function onSchoolNumberChange(e: CustomEvent<number>) {
     const value: string = e.detail.toString();
     if (value.length == 4) {
-      dispatch("schoolNumberChange", value);
+      fetch(`${BACKEND_URL}/info?schoolNumber=${value}`)
+        .then((response) => {
+          if(!response.ok) throw new Error(response.statusText);
+          response.json().then((data: School) => {
+            console.log("1");
+            school = data; console.log(data);
+          }).catch((error) => {
+            console.log("2");
+            console.error(error);
+          });
+        })
+        .catch((error) => {
+          console.log("3");
+          console.error(error);
+        });
     }
   }
-
-  const dispatch = createEventDispatcher();
 </script>
 
 <Stack spacing="sm">
@@ -24,69 +37,27 @@
       required={true}
       on:change={onSchoolNumberChange}
     />
-    <TextInput label="Schultyp" disabled required={false} name="school_type" />
+    <TextInput label="Schultyp" disabled bind:value={school.type} />
   </Group>
 
   <Group grow>
-    <TextInput
-      label="Schulaufsicht"
-      disabled
-      required={false}
-      name="school_supervisor"
-    />
-    <TextInput
-      label="Rechtsstellung"
-      disabled
-      required={false}
-      name="school_legaltype"
-    />
+    <TextInput label="Schulaufsicht" bind:value={school.supervisor} disabled />
+    <TextInput label="Rechtsstellung" bind:value={school.legal} disabled />
   </Group>
 
-  <TextInput
-    label="Name der Schule"
-    disabled
-    required={false}
-    name="school_name"
-  />
+  <TextInput label="Name der Schule" bind:value={school.name} disabled />
+  <TextInput label="Straße & Hausnummer" bind:value={school.address} disabled />
 
   <Group grow>
-    <TextInput label="Straße" disabled required={false} name="school_street" />
-    <TextInput
-      label="Hausnummer"
-      disabled
-      required={false}
-      name="school_number"
-    />
+    <TextInput label="Postleitzahl" bind:value={school.zipcode} disabled />
+    <TextInput label="Ort" bind:value={school.city} disabled />
   </Group>
 
   <Group grow>
-    <TextInput
-      label="Postleitzahl"
-      disabled
-      required={false}
-      name="school_zipcode"
-    />
-    <TextInput label="Ort" disabled required={false} name="school_city" />
+    <TextInput label="E-Mail" bind:value={school.email} disabled />
+    <TextInput label="Telefonnummer" bind:value={school.phone} disabled />
   </Group>
 
-  <Group grow>
-    <TextInput label="E-Mail" disabled required={false} name="school_email" />
-    <TextInput
-      label="Telefonnummer"
-      disabled
-      required={false}
-      name="school_phone"
-    />
-  </Group>
-
-  <TextInput
-    label="Name der Schulleitung"
-    required={true}
-    name="school_principal_name"
-  />
-  <TextInput
-    label="E-Mail der Schulleitung"
-    required={true}
-    name="school_principal_email"
-  />
+  <TextInput label="Name der Schulleitung" required={true} name="name" />
+  <TextInput label="E-Mail der Schulleitung" required={true} name="email" />
 </Stack>
