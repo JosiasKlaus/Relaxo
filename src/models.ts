@@ -3,7 +3,7 @@ type School = {
     supervisor?: string;
     legal?: string;
     name?: string;
-    address?: string;
+    street?: string;
     zipcode?: string;
     city?: string;
     email?: string;
