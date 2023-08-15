@@ -1,15 +1,12 @@
 <script lang="ts">
-  import {
-    ActionIcon,
-    Container,
-    Group,
-    Space,
-    SvelteUIProvider,
-    Text,
-    colorScheme,
-  } from "@svelteuidev/core";
-  import Form from "./views/Form.svelte";
+  import { ActionIcon, Container, Divider, Group, Space, SvelteUIProvider, Text, colorScheme } from "@svelteuidev/core";
   import { Moon, Sun } from "radix-icons-svelte";
+  import { submitFormData } from "./service";
+
+  import Header from "./views/Header.svelte";
+  import School from "./views/School.svelte";
+  import EntryGroup from "./views/EntryGroup.svelte";
+  import Footer from "./views/Footer.svelte";
 
   let currentColorScheme: string;
   colorScheme.subscribe((v) => {
@@ -19,6 +16,13 @@
   function toggleTheme() {
     colorScheme.update((v) => (v === "light" ? "dark" : "light"));
   }
+
+  function onSubmit(e: Event) {
+    const formData = new FormData(e.target as HTMLFormElement);
+    submitFormData(formData).then((res) => {
+      console.log(res);
+    });
+  }
 </script>
 
 <!-- Meta tag theme handling for page background -->
@@ -26,9 +30,20 @@
   <meta name="color-scheme" content={currentColorScheme} />
 </svelte:head>
 
+<!-- Main application context -->
 <SvelteUIProvider withNormalizeCSS>
-  <Container size="sm" style="padding: 4rem 0;">
-    <Form />
+  <Container size="sm" style="padding: 4rem;">
+    <form on:submit|preventDefault={onSubmit}>
+      <Header />
+      <Space h="xl" />
+      <Divider label="Schulinformationen" labelPosition="center" />
+      <Space h="xl" />
+      <School />
+      <EntryGroup />
+      <Space h="xl" />
+      <Divider label="Zusammenfassung" labelPosition="center" />
+      <Footer />
+    </form>
   </Container>
   <Group position="center">
     <ActionIcon variant="light" on:click={toggleTheme}>
@@ -38,7 +53,7 @@
       Designt, Entwickelt und Betrieben von © 2022 Josias Klaus
     </Text>
   </Group>
-  <Space h="md"/>
+  <Space h="md" />
 </SvelteUIProvider>
 
 <!-- Make sure required indicator is red -->
