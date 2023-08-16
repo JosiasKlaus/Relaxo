@@ -116,7 +116,7 @@
 
 <Stack spacing="sm">
   <NativeSelect
-    label="Für welche Art von Maßnahmen sollen die Mittel verwendet werden"
+    label="Für welche Art von Maßnahmen sollen die Mittel verwendet werden?"
     placeholder="Bitte auswählen"
     name="entry_{index}_type"
     data={type_options}
@@ -130,7 +130,7 @@
     required
   />
   <MultiSelect
-    label="In welchen Fächern werden Maßnahmen angeboten"
+    label="In welchen Fächern werden Maßnahmen angeboten?"
     description="Zum Entfernen einer Auswahl, bitte auf die unten erschienenes Fach klicken."
     name="entry_{index}_subjects"
     options={subject_options}
