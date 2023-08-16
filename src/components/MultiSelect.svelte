@@ -8,6 +8,8 @@
   export let name: string;
   export let required: boolean;
 
+  let selectValue: string;
+
   function onOptionSelect(event: Event) {
     const target = event.target as HTMLSelectElement;
     values.push(target.value);
@@ -19,12 +21,13 @@
   function onOptionRemove(option: string) {
     values = values.filter((item) => item !== option);
     options.push(option);
-    options = options;
+    options = options.sort((a, b) => a.localeCompare(b));
+    selectValue = null;
   }
 </script>
 
 <input type="hidden" {name} bind:value={values} />
-<NativeSelect data={options} {label} {description} required={required && values.length == 0} placeholder="Bitte auswählen" on:change={onOptionSelect} />
+<NativeSelect data={options} {label} {description} required={required && values.length == 0} placeholder="Bitte auswählen" on:change={onOptionSelect} bind:value={selectValue} />
 {#if values.length > 0}
   <Space />
   <Group spacing="md">
