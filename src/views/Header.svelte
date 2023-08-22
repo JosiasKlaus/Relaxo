@@ -14,12 +14,13 @@
         Förderbedarfe zu beantragen.
     </Text>
     <Text size="lg" weight={"bold"} align="justify" style="line-height: 1.5;">
-        Wichtig! Bitte beachten Sie, dass für die Verausgabung von Maßnahmen
-        entsprechend des Erlasses vom 01.08.2023 „Dezentrale
-        Kompensationsmaßnahmen für pandemiebedingte Förderbedarfe“ grundsätzlich
-        gilt, dass es sich um eine Maßnahme zur Kompensation pandemiebedingter
-        Förderbedarfe handeln muss, damit diese über das zweckgebundene Budget
-        finanziert werden kann. Eine Abstimmung mit dem zuständigen staatlichen
-        Schulamt ist wie je nach Art und Umfang der Maßnahme erforderlich.
+        Bitte beachten Sie, dass für die Verausgabung der beantragten Mittel
+        grundsätzlich der Erlass vom 01.08.2023 „Dezentrale
+        Kompensationsmaßnahmen für pandemiebedingte Förderbedarfe“ gilt. Es muss
+        sich um eine Maßnahme zur Kompensation pandemiebedingter Förderbedarfe
+        handeln, damit diese über das zweckgebundene Budget finanziert werden
+        kann. Eine Abstimmung mit dem zuständigen staatlichen Schulamt ist je
+        nach Art und Umfang der Maßnahme erforderlich. Nicht verausgabte Mittel
+        werden zum Ende des Schuljahres 2023/2024 zurück gezogen.
     </Text>
 </Stack>
