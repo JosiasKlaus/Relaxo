@@ -28,7 +28,7 @@
     required
   />
   <MultiSelect
-    label="Welche Fächer können der Maßnahme {index} zugeordnet werden?"
+    label="Welche Fächer können der Maßnahme {index + 1} zugeordnet werden?"
     placeholder="Bitte auswählen"
     description="Mehrfachnennung möglich. Zum Entfernen einer Auswahl, bitte auf die unten erschienenes Fach klicken."
     name="entry_{index}_subjects"
@@ -37,7 +37,7 @@
     required
   />
   <NumberInput
-    label="Wie viele Schülerinnen und Schüler werden mit der Maßnahme {index} gefördert?"
+    label="Wie viele Schülerinnen und Schüler werden mit der Maßnahme {index + 1} gefördert?"
     placeholder="0"
     name="entry_{index}_students"
     required
@@ -45,7 +45,7 @@
   <Space />
   <Costs {index} on:staff={(value) => dispatch("staff", value)} />
   <NumberInput
-    label="Wie viele Personen werden insgesamt für die Umsetzung der Maßnahme {index} eingesetzt?"
+    label="Wie viele Personen werden insgesamt für die Umsetzung der Maßnahme {index + 1} eingesetzt?"
     description="Der hier angegebene Wert wird automatisch anhand der Aufschlüsselung berechnet und dient lediglich der Überprüfung auf Korrektheit."
     placeholder="0"
     name="entry_{index}_staff_count"
