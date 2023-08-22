@@ -2,6 +2,7 @@
   import { Alert, Group, NumberInput, Stack, TextInput } from "@svelteuidev/core";
   import { InfoCircled } from "radix-icons-svelte";
   import { getSchoolInfo } from "../service";
+  import type { School } from "../constants";
 
   let displayError: boolean = false;
   let school: School = {};
