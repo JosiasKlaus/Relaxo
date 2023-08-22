@@ -1,21 +1,35 @@
-<script>
+<script lang="ts">
     import { Button, Checkbox, Space, Stack, Text } from "@svelteuidev/core";
-    import { staff_cost, material_cost } from "../service";
+    import { staff_map, material_map } from "../service";
+    import { currencyFormater } from "../utils";
 
-    const formater = new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR",
+    let staff_cost: number;
+    let material_cost: number;
+
+    staff_map.subscribe((value) => {
+        staff_cost = 0;
+        value.forEach((staff) => {
+            staff_cost += staff;
+        });
+    });
+
+    material_map.subscribe((value) => {
+        material_cost = 0;
+        value.forEach((material) => {
+            material_cost += material;
+        });
     });
 </script>
 
 <Stack>
     <Text size="lg" weight={"bold"} align="justify" style="line-height: 1.5;">
         Hiermit beantrage ich für die Umsetzung des Landesprogramms „Löwenstark
-        – der BildungsKICK“ zusätzliche Mittel für in Höhe von
+        – der BildungsKICK“ zusätzliche Mittel in Höhe von
     </Text>
     <Text size="lg" style="line-height: 2;">
-        {formater.format($staff_cost)} für Personalausgaben und<br />
-        {formater.format($material_cost)} für Sachausgaben
+        {currencyFormater.format(staff_cost * 1.15)} für Personalausgaben (inkl. 15% Aufschlag) und<br />
+        {currencyFormater.format(material_cost)} für Sachausgaben<br />
+        {currencyFormater.format(staff_cost * 1.15 + material_cost)} insgesamt
     </Text>
     <Text size="lg" align="justify" style="line-height: 1.5;">
         Bitte senden Sie das Formular nach dem Ausfüllen ab. Drucken Sie das
