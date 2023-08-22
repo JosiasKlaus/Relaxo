@@ -32,7 +32,7 @@
 
 <!-- Main application context -->
 <SvelteUIProvider withNormalizeCSS>
-  <Container size="sm" style="padding: 4rem;">
+  <Container size={768} style="padding: 4rem 4rem;">
     <form on:submit|preventDefault={onSubmit}>
       <Header />
       <Space h="xl" />
