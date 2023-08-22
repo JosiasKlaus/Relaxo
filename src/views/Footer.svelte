@@ -1,5 +1,12 @@
 <script lang="ts">
-    import { Button, Checkbox, Space, Stack, Text } from "@svelteuidev/core";
+    import {
+        Button,
+        Checkbox,
+        Group,
+        Space,
+        Stack,
+        Text,
+    } from "@svelteuidev/core";
     import { staff_map, material_map } from "../service";
     import { currencyFormater } from "../utils";
 
@@ -27,7 +34,8 @@
         – der BildungsKICK“ zusätzliche Mittel in Höhe von
     </Text>
     <Text size="lg" style="line-height: 2;">
-        {currencyFormater.format(staff_cost * 1.15)} für Personalausgaben (inkl. 15% Aufschlag) und<br />
+        {currencyFormater.format(staff_cost * 1.15)} für Personalausgaben (inkl.
+        15% Aufschlag) und<br />
         {currencyFormater.format(material_cost)} für Sachausgaben<br />
         {currencyFormater.format(staff_cost * 1.15 + material_cost)} insgesamt
     </Text>
@@ -51,10 +59,19 @@
     </Text>
     <Space h="md" />
     <Stack spacing="xl">
-        <Checkbox
-            label="Ich habe die Datenschutzbestimmungen gelesen und erkläre mich damit einverstanden."
-            name="terms_and_conditions"
-        />
-        <Button style="margin-left: auto; max-width: fit-content;" type="submit">Abschicken</Button>
+        <Group noWrap>
+            <Checkbox name="terms_and_conditions" />
+            <Text>Ich habe die
+                <Text
+                    color="blue" variant="link" root="a"
+                    href="https://kultusministerium.hessen.de/Datenschutz">
+                    Datenschutzbestimmungen
+                </Text>
+                gelesen und erkläre mich damit einverstanden. <span class="required">*</span>
+            </Text>
+        </Group>
+        <Button style="margin-left: auto; max-width: fit-content;" type="submit">
+            Abschicken
+        </Button>
     </Stack>
 </Stack>
