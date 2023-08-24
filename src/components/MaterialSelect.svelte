@@ -16,7 +16,7 @@
         required bind:value={value.type}
     />
     <NumberInput
-        label="voraussichtlicher Gesamtbetrag der Sachkosten"
+        label="voraussichtlicher Gesamtbetrag der Sachkosten (in €)"
         placeholder="0,00€" name="{prefix}_material_cost" min={0}
         disabled={value.type === material_options[0]}
         required={value.type !== material_options[0]}

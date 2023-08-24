@@ -19,7 +19,7 @@
         Kompensationsmaßnahmen für pandemiebedingte Förderbedarfe“ gilt. Es muss
         sich um eine Maßnahme zur Kompensation pandemiebedingter Förderbedarfe
         handeln, damit diese über das zweckgebundene Budget finanziert werden
-        kann. Eine Abstimmung mit dem zuständigen staatlichen Schulamt ist je
+        kann. Eine Abstimmung mit dem zuständigen Staatlichen Schulamt ist je
         nach Art und Umfang der Maßnahme erforderlich. Nicht verausgabte Mittel
         werden zum Ende des Schuljahres 2023/2024 zurück gezogen.
     </Text>
