@@ -33,7 +33,7 @@ export const type_options = [
     "Unterricht in einem über die Stundentafel hinausgehenden Umfang",
     "Eine Hausaufgabenbetreuung",
     "Eine organisierte (Online-) Nachhilfe",
-    'Eine zweiteilige Teilung von Lerngruppen (sog. "Doppelstreckung")',
+    'Eine zweiteilige Teilung von Lerngruppen (sog. "Doppelsteckung")',
     "Kulturelle Angebote",
     "Gelegenheiten zur körperlichen Bewegung",
     "Sozialpädagogische und psychologische Unterstützung",
