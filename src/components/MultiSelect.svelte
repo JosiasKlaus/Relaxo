@@ -4,9 +4,10 @@
   
     export let data: string[];
     export let name: string;
-    export let root;
+    export let required: boolean = false;
+    export let root: any;
   
-    let selectValue: string = "";
+    let selectValue: string | null;
   
     function onOptionSelect(event: CustomEvent<string>) {
       const value = event.detail ? event.detail : (event.target as HTMLSelectElement).value;
@@ -25,7 +26,7 @@
   </script>
   
   <input type="hidden" {name} bind:value={values} />
-  <svelte:component this={root} {data} {...$$restProps} on:change={onOptionSelect} bind:value={selectValue} />
+  <svelte:component this={root} {data} required={required && values.length < 1} {...$$restProps} on:change={onOptionSelect} bind:value={selectValue} />
   {#if values.length > 0}
     <Space />
     <Group spacing="md">
