@@ -1,12 +1,5 @@
 <script lang="ts">
-    import {
-        Button,
-        Checkbox,
-        Group,
-        Space,
-        Stack,
-        Text,
-    } from "@svelteuidev/core";
+    import { Button, Checkbox, Divider, Group, Space, Stack, Text } from "@svelteuidev/core";
     import { staff_map, material_map } from "../service";
     import { currencyFormater } from "../utils";
 
@@ -34,11 +27,15 @@
         – der BildungsKICK“ zusätzliche Mittel in Höhe von
     </Text>
     <Text size="lg" style="line-height: 2;">
-        {currencyFormater.format(staff_cost * 1.15)} für Personalausgaben (inkl.
-        15% Aufschlag) und<br />
-        {currencyFormater.format(material_cost)} für Sachausgaben<br />
+        {currencyFormater.format(staff_cost)} für Personalausgaben<br />
+        {currencyFormater.format(staff_cost * 1.15)} (inkl. 15% Aufschlag) und<br />
+        {currencyFormater.format(material_cost)} für Sachausgaben
+    </Text>
+    <Divider style="margin: 0;" />
+    <Text size="lg" weight={"bold"} align="justify" style="line-height: 1.5;">
         {currencyFormater.format(staff_cost * 1.15 + material_cost)} insgesamt
     </Text>
+    <Space h="md" />
     <Text size="lg" align="justify" style="line-height: 1.5;">
         Bitte senden Sie das Formular nach dem Ausfüllen ab. Drucken Sie das
         Formular aus und senden Sie den unterschriebenen Ausdruck an:
