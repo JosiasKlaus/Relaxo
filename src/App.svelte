@@ -20,12 +20,17 @@
 
   function onSubmit(e: Event) {
     const formData = new FormData(e.target as HTMLFormElement);
-    const nestedData = createNestedObject(Object.fromEntries(formData));
+    if(formData.get("terms_and_conditions") != "true") return alert("Bitte akzeptieren Sie die Datenschutzbestimmungen.");
 
-    console.log(JSON.stringify(nestedData, null, 2));
-    /* submitFormData(formData).then((res) => {
-      console.log(res);
-    }); */
+    const nestedData = createNestedObject(Object.fromEntries(formData));
+    submitFormData(nestedData).then((response) => {
+      let blob = new Blob([response], { type: response.type });
+      let url = window.URL.createObjectURL(blob);
+      let pwa = window.open(url);
+      if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert('Please disable your Pop-up blocker and try again.');
+      }
+    });
   }
 </script>
 
