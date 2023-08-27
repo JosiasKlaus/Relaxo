@@ -15,6 +15,9 @@
     let staff_cost: Map<string, number> = new Map<string, number>();
     let material_cost: Map<string, number> = new Map<string, number>();
 
+    let staff_sum: number = 0;
+    let material_sum: number = 0;
+
     function addStaff() {
         staff_components = [...staff_components, StaffSelect];
     }
@@ -24,14 +27,18 @@
     }
 
     function onStaffChange(event: CustomEvent<Staff>) {
+        if(!event.detail.cost) return;
         staff_cost.set(event.detail.prefix, event.detail.cost);
         const cost = [...staff_cost.values()].reduce((a, b) => a + b, 0);
+        staff_sum = cost;
         staff_map.update((map) => map.set(index, cost));
     }
 
     function onMaterialChange(event: CustomEvent<Material>) {
+        if(!event.detail.cost) return;
         material_cost.set(event.detail.prefix, event.detail.cost);
         const cost = [...material_cost.values()].reduce((a, b) => a + b, 0);
+        material_sum = cost;
         material_map.update((map) => map.set(index, cost));
     }
 </script>
@@ -51,16 +58,18 @@
 </Text>
 <Space />
 {#each staff_components as component, staff_index}
-    <svelte:component this={component} prefix="entry_{index}_cost_{staff_index}" on:change={onStaffChange} />    
+    <svelte:component this={component} prefix="entry_{index}_cost_staff_{staff_index}" on:change={onStaffChange} />    
 {/each}
 <Button type="button" variant="light" on:click={() => addStaff()}>
     <Plus slot="leftIcon" />Weiteres Personal hinzufügen
 </Button>
 <Space />
 {#each material_components as component, material_index}
-    <svelte:component this={component} prefix="entry_{index}_cost_{material_index}" on:change={onMaterialChange} />    
+    <svelte:component this={component} prefix="entry_{index}_cost_material_{material_index}" on:change={onMaterialChange} />    
 {/each}
 <Button type="button" variant="light" on:click={() => addMaterial()}>
     <Plus slot="leftIcon" />Weitere Sachkosten hinzufügen
 </Button>
 <Space />
+<input type="hidden" name="entry_{index}_cost_sum_staff" bind:value={staff_sum} />
+<input type="hidden" name="entry_{index}_cost_sum_material" bind:value={material_sum} />
