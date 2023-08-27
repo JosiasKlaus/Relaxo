@@ -7,6 +7,7 @@
   import School from "./views/School.svelte";
   import EntryGroup from "./views/EntryGroup.svelte";
   import Footer from "./views/Footer.svelte";
+    import { createNestedObject } from "./utils";
 
   let currentColorScheme: string;
   colorScheme.subscribe((v) => {
@@ -19,9 +20,12 @@
 
   function onSubmit(e: Event) {
     const formData = new FormData(e.target as HTMLFormElement);
-    submitFormData(formData).then((res) => {
+    const nestedData = createNestedObject(Object.fromEntries(formData));
+
+    console.log(JSON.stringify(nestedData, null, 2));
+    /* submitFormData(formData).then((res) => {
       console.log(res);
-    });
+    }); */
   }
 </script>
 
@@ -60,5 +64,13 @@
 <style>
   :global(span.required) {
     color: red;
+  }
+
+  :global(.svelteui-NativeSelect-root) {
+    margin-top: auto;
+  }
+
+  :global(.svelteui-NumberInput-root) {
+    margin-top: auto;
   }
 </style>

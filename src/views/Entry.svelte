@@ -52,14 +52,3 @@
     disabled
   />
 </Stack>
-
-<!-- Make sure grouped selects are aligned to the bottom of the container. -->
-<style>
-  :global(.svelteui-NativeSelect-root) {
-    margin-top: auto;
-  }
-
-  :global(.svelteui-NumberInput-root) {
-        margin-top: auto;
-    }
-</style>
