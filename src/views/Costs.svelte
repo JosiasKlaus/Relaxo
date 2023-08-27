@@ -4,13 +4,14 @@
     import StaffSelect from "../components/StaffSelect.svelte";
     import MaterialSelect from "../components/MaterialSelect.svelte";
     import { Plus } from "radix-icons-svelte";
-    import { material_map, staff_map } from "../service";
+    import { material_map, staff_count_map, staff_map } from "../service";
+    import { onMount } from "svelte";
     
     export let index: number;
 
     /* Event handlers & dispatchers */
-    let staff_components = [StaffSelect];
-    let material_components = [MaterialSelect];
+    let staff_components: any[] = [];
+    let material_components: any[] = [];
 
     let staff_cost: Map<string, number> = new Map<string, number>();
     let material_cost: Map<string, number> = new Map<string, number>();
@@ -20,6 +21,7 @@
 
     function addStaff() {
         staff_components = [...staff_components, StaffSelect];
+        staff_count_map.update((map) => map.set(index, staff_components.length));
     }
 
     function addMaterial() {
@@ -41,6 +43,11 @@
         material_sum = cost;
         material_map.update((map) => map.set(index, cost));
     }
+
+    onMount(() => {
+        addStaff();
+        addMaterial();
+    });
 </script>
 
 <Title order={3}>Angaben zu geplanten Personal- und Sachkosten</Title>

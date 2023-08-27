@@ -4,10 +4,16 @@
   import OtherSelect from "../components/OtherSelect.svelte";
   import { type_options, grade_options, subject_options } from "../constants";
   import Costs from "./Costs.svelte";
-    import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from "svelte";
+  import { staff_count_map } from "../service";
   export let index: number;
 
   const dispatch = createEventDispatcher();
+
+  let staff_count = 0;
+  staff_count_map.subscribe((map) => {
+    staff_count = map.get(index) || 0;
+  });
 </script>
 
 <Stack spacing="sm">
@@ -50,5 +56,6 @@
     placeholder="0"
     name="entry_{index}_staff_count"
     disabled
+    bind:value={staff_count}
   />
 </Stack>

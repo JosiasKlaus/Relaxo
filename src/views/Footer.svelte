@@ -1,10 +1,11 @@
 <script lang="ts">
     import { Button, Checkbox, Divider, Group, Space, Stack, Text } from "@svelteuidev/core";
-    import { staff_map, material_map } from "../service";
+    import { staff_map, material_map, staff_count_map } from "../service";
     import { currencyFormater } from "../utils";
 
     let staff_cost: number;
     let material_cost: number;
+    let staff_count: number;
 
     staff_map.subscribe((value) => {
         staff_cost = 0;
@@ -19,8 +20,19 @@
             material_cost += material;
         });
     });
+
+    staff_count_map.subscribe((value) => {
+        staff_count = 0;
+        value.forEach((count) => {
+            staff_count += count;
+        });
+    });
 </script>
 
+
+<input type="hidden" name="cost_staff" value={staff_cost * 1.15} />
+<input type="hidden" name="cost_material" value={material_cost} />
+<input type="hidden" name="count_staff" value={staff_count} />
 <Stack>
     <Text size="lg" weight={"bold"} align="justify" style="line-height: 1.5;">
         Hiermit beantrage ich für die Umsetzung des Landesprogramms „Löwenstark
@@ -57,7 +69,7 @@
     <Space h="md" />
     <Stack spacing="xl">
         <Group noWrap>
-            <Checkbox name="terms_and_conditions" />
+            <Checkbox name="terms_and_conditions" value="true" />
             <Text>Ich habe die
                 <Text
                     color="blue" variant="link" root="a"
