@@ -12,12 +12,12 @@
 <Group spacing="md" grow noWrap>
     <NativeSelect
         label="Sachkosten" placeholder="Bitte auswählen"
-        name="{prefix}_material_type" data={material_options}
+        name="{prefix}_type" data={material_options}
         required bind:value={value.type}
     />
     <NumberInput
         label="voraussichtlicher Gesamtbetrag der Sachkosten (in €)"
-        placeholder="0,00€" name="{prefix}_material_cost" min={0}
+        placeholder="0,00€" name="{prefix}_cost" min={0}
         disabled={value.type === material_options[0]}
         required={value.type !== material_options[0]}
         on:change={() => dispatch("change", value)}
