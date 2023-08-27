@@ -56,6 +56,6 @@
     <TextInput label="Telefonnummer" bind:value={school.phone} disabled />
   </Group>
 
-  <TextInput label="Name der Schulleitung" required name="name" />
-  <TextInput label="E-Mail der Schulleitung" required name="email" />
+  <TextInput label="Name der Schulleitung" required name="principal_name" />
+  <TextInput label="E-Mail der Schulleitung" required name="principal_email" />
 </Stack>
