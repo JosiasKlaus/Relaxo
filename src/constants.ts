@@ -12,7 +12,7 @@ export type School = {
 }
 
 export type Staff = {
-    prefix?: string;
+    prefix: string;
     type?: string;
     hours?: number;
     cost?: number,
@@ -21,7 +21,7 @@ export type Staff = {
 }
 
 export type Material = {
-    prefix?: string;
+    prefix: string;
     type?: string;
     cost?: number;
 }
