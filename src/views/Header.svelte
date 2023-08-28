@@ -21,6 +21,6 @@
         handeln, damit diese über das zweckgebundene Budget finanziert werden
         kann. Eine Abstimmung mit dem zuständigen Staatlichen Schulamt ist je
         nach Art und Umfang der Maßnahme erforderlich. Nicht verausgabte Mittel
-        werden zum Ende des Schuljahres 2023/2024 zurück gezogen.
+        werden zum Ende des Schuljahres 2023/2024 zurückgezogen.
     </Text>
 </Stack>
