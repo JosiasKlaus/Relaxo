@@ -10,12 +10,15 @@
     const dispatch = createEventDispatcher();
 
     function calculateCost() {
-        if(!value.type || value.hours == null || value.hours == undefined) return;
+        if(!value.type) return;
         if(value.type === staff_options[1]) {
+            if(value.hours == null || value.hours == undefined) return;
             value = { ...value, cost: value.hours*40 };
         } else if(value.type === staff_options[2]) {
+            if(value.hours == null || value.hours == undefined) return;
             value = { ...value, cost: value.hours*46 };
         } else if(value.type === staff_options[3]) {
+            if(value.hours == null || value.hours == undefined) return;
             value = { ...value, cost: value.hours*41 };
         } else if (value.type === staff_options[4]) {
             if(!value.percentage || !value.months || value.months.length < 1) return;
@@ -36,13 +39,13 @@
     <NumberInput
         label="Voraussichtliche Summe der Stunden (Gesamtzeitraum)"
         placeholder="0" name="{prefix}_hours" min={0}
-        disabled={value.type === staff_options[0]}
-        required={value.type !== staff_options[0]}
+        disabled={value.type === staff_options[0] || value.type === staff_options[4]}
+        required={value.type !== staff_options[0] || value.type !== staff_options[4]}
         on:change={() => calculateCost()} bind:value={value.hours}
     />
     <NumberInput
         label="Voraussichtliche Kosten" placeholder="0"
-        disabled bind:value={value.cost}
+        disabled bind:value={value.cost} style="margin-top: auto;"
         formatter={(value) =>
             value && !Number.isNaN(parseFloat(value))
             ? currencyFormater.format(parseFloat(value))
