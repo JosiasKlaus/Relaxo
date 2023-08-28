@@ -76,6 +76,6 @@
   }
 
   :global(.svelteui-NumberInput-root) {
-    margin-top: auto;
+    margin-top: auto !important;
   }
 </style>
