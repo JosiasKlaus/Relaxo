@@ -27,7 +27,7 @@
   <MultiSelect
     label="Die Maßnahmen werden in folgenden Jahrgangsstufen durchgeführt:"
     placeholder="Bitte auswählen"
-    description="Mehrfachnennung möglich. Zum Entfernen einer Auswahl, bitte auf die unten erschienene Jahrangsstufe klicken."
+    description="Mehrfachnennung möglich. Zum Entfernen einer Auswahl bitte auf die unten erschienene Jahrgangsstufe klicken."
     name="entry_{index}_grades"
     data={grade_options}
     root={OtherSelect}
@@ -36,7 +36,7 @@
   <MultiSelect
     label="Welche Fächer können der Maßnahme {index + 1} zugeordnet werden?"
     placeholder="Bitte auswählen"
-    description="Mehrfachnennung möglich. Zum Entfernen einer Auswahl, bitte auf die unten erschienenes Fach klicken."
+    description="Mehrfachnennung möglich. Zum Entfernen einer Auswahl bitte auf das unten erschienene Fach klicken."
     name="entry_{index}_subjects"
     data={subject_options}
     root={OtherSelect}
