@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-const BACKEND_URL = 'http://localhost:8080';
+const BACKEND_URL = 'http://localhost:8080/api';
 
 export let staff_map = writable(new Map<number, number>());
 export let material_map = writable(new Map<number, number>());
