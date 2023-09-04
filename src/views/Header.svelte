@@ -10,7 +10,7 @@
         Schülerinnen und Schüler dabei, die entstandenen Lernrückstände infolge
         der Corona-Pandemie zu kompensieren. Zu Beginn des Schuljahres 2023/2024
         besteht für öffentliche Schulen die Möglichkeit, zusätzliche Mittel bis
-        31.12.2023 (fürPersonal- und Sachkosten) zur Kompensation
+        31.12.2023 (für Personal- und Sachkosten) zur Kompensation
         pandemiebedingter Förderbedarfe zu beantragen.
     </Text>
     <Text size="lg" weight={"bold"} align="justify" style="line-height: 1.5;">
