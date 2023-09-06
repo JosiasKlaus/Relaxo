@@ -27,6 +27,10 @@ export type Material = {
 }
 
 /* Predefined select options */
+export const year_options = [
+    "2023", "2024"
+];
+
 export const type_options = [
     "Zusätzliche Förderkurse",
     "Eine individuelle Lernbegleitung im Unterricht",
@@ -90,9 +94,20 @@ export const subject_options = [
     "Geschichte",
 ];
 
-export const staff_time_options = [
+export const staff_time_options_2023 = [
     { label: "September 2023", value: "September 2023"},
     { label: "Oktober 2023", value: "Oktober 2023"},
     { label: "November 2023", value: "November 2023"},
     { label: "Dezember 2023", value: "Dezember 2023"}
+]
+
+export const staff_time_options_2024 = [
+    { label: "Januar 2024", value: "Januar 2024"},
+    { label: "Februar 2024", value: "Februar 2024"},
+    { label: "März 2024", value: "März 2024"},
+    { label: "April 2024", value: "April 2024"},
+    { label: "Mai 2024", value: "Mai 2024"},
+    { label: "Juni 2024", value: "Juni 2024"},
+    { label: "Juli 2024", value: "Juli 2024"},
+    { label: "August 2024", value: "August 2024"},
 ]

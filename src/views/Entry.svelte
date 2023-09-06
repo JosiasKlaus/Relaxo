@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { NumberInput, Space, Stack } from "@svelteuidev/core";
+  import { NativeSelect, NumberInput, Space, Stack } from "@svelteuidev/core";
   import MultiSelect from "../components/MultiSelect.svelte";
   import OtherSelect from "../components/OtherSelect.svelte";
-  import { type_options, grade_options, subject_options } from "../constants";
+  import { type_options, grade_options, subject_options, year_options } from "../constants";
   import Costs from "./Costs.svelte";
   import { createEventDispatcher } from "svelte";
   import { staff_count_map } from "../service";
@@ -14,9 +14,19 @@
   staff_count_map.subscribe((map) => {
     staff_count = map.get(index) || 0;
   });
+
+  let year_option: string;
 </script>
 
 <Stack spacing="sm">
+  <NativeSelect
+    label="Für welches Jahr wird die Maßnahme beantragt?"
+    placeholder="Bitte auswählen"
+    name="entry_{index}_year"
+    data={year_options}
+    bind:value={year_option}
+    required
+  />
   <OtherSelect
     label="Für welche Art von Maßnahmen sollen die Mittel verwendet werden?"
     placeholder="Bitte auswählen"
@@ -49,7 +59,7 @@
     required
   />
   <Space />
-  <Costs {index} on:staff={(value) => dispatch("staff", value)} />
+  <Costs {index} {year_option} on:staff={(value) => dispatch("staff", value)} />
   <NumberInput
     label="Wie viele Personen werden insgesamt für die Umsetzung der Maßnahme {index + 1} eingesetzt?"
     description="Der hier angegebene Wert wird automatisch anhand der Aufschlüsselung berechnet und dient lediglich der Überprüfung auf Korrektheit."

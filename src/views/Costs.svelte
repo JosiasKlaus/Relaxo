@@ -8,6 +8,7 @@
     import { onMount } from "svelte";
     
     export let index: number;
+    export let year_option: string;
 
     /* Event handlers & dispatchers */
     let staff_components: any[] = [];
@@ -65,7 +66,7 @@
 </Text>
 <Space />
 {#each staff_components as component, staff_index}
-    <svelte:component this={component} prefix="entry_{index}_cost_staff_{staff_index}" on:change={onStaffChange} />    
+    <svelte:component this={component} prefix="entry_{index}_cost_staff_{staff_index}" {year_option} on:change={onStaffChange} />    
 {/each}
 <Button type="button" variant="light" on:click={() => addStaff()}>
     <Plus slot="leftIcon" />Weiteres Personal hinzufügen

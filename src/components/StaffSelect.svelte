@@ -1,10 +1,11 @@
 <script lang="ts">
     import { CheckboxGroup, Group, NativeSelect, NumberInput, Stack } from "@svelteuidev/core";
-    import { staff_options, staff_time_options, type Staff } from "../constants";
+    import { staff_options, type Staff, staff_time_options_2023, staff_time_options_2024, year_options } from "../constants";
     import { createEventDispatcher } from "svelte";
     import { currencyFormater } from "../utils";
 
     export let prefix: string;
+    export let year_option: string;
     let value: Staff = { prefix: prefix };
 
     const dispatch = createEventDispatcher();
@@ -69,7 +70,7 @@
         <input type="hidden" name="{prefix}_staff_months" bind:value={value.months} />
         <CheckboxGroup
             label="Es ist der Einsatz für folgende Monate geplant:"
-            color="blue" size="sm" items={staff_time_options}
+            color="blue" size="sm" items={year_option == year_options[0] ? staff_time_options_2023 : staff_time_options_2024}
             on:change={() => calculateCost()} bind:value={value.months}
         />
     </Stack>
