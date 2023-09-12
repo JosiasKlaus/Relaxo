@@ -1,24 +1,28 @@
 <script lang="ts">
-  import { Alert, Group, NumberInput, Stack, TextInput } from "@svelteuidev/core";
-  import { InfoCircled } from "radix-icons-svelte";
-  import { getSchoolInfo } from "../service";
-  import type { School } from "../constants";
+  import { Alert, Group, Stack, TextInput } from "@svelteuidev/core";
+  import { getSchoolInfo } from "../utils/service";
+  import type { Principal, School } from "../types";
+  import { application } from "../utils/service";
+  import { t } from "../utils/i18n";
 
   let displayError: boolean = false;
-  let school: School = {};
+  let schoolNumber: string;
+  let principal: Principal = {};
 
-  function onChange(e: CustomEvent<number>) {
-    const value: string = e.detail.toString();
-    if (value.length == 4) {
-      getSchoolInfo(value)
+  $: schoolNumber, updateSchoolInfo();
+  $: principal, $application.principal = principal;
+
+  function updateSchoolInfo() {
+    if(schoolNumber && schoolNumber.length == 4) {
+      getSchoolInfo(schoolNumber)
         .then((data: School) => {
           displayError = false;
-          school = data;
+          $application.school = data;
         })
         .catch((error) => {
           console.error(error);
           displayError = true;
-          Object.keys(school).forEach((key) => (school[key] = null));
+          $application.school = {};
         });
     }
   }
@@ -26,36 +30,33 @@
 
 <Stack spacing="sm">
   {#if displayError}
-    <Alert icon={InfoCircled} title="Fehler">
-      Die angegebene Schulnummer ist entweder nicht gültig oder ein Fehler bei
-      der Serverkommunikation ist Aufgetreten. Bitte überprüfen Sie Ihre Eingabe
-      oder versuchen Sie es später erneut. Sollte der Fehler weiterhin bestehen,
-      wenden Sie sich bitte an den Support.
+    <Alert title="Fehler">
+      {$t('school.alert')}
     </Alert>
   {/if}
   <Group grow noWrap>
-    <NumberInput hideControls required label="Schulnummer" placeholder="0001" name="number" maxlength={4} minlength={4} on:change={onChange} />
-    <TextInput label="Schultyp" disabled bind:value={school.type} />
+    <TextInput label={$t('school.number')} placeholder={$t('school.number.placeholder')} maxlength={4} minlength={4} bind:value={schoolNumber} required />
+    <TextInput label={$t('school.type')} value={$application.school?.type || null} disabled />
   </Group>
 
   <Group grow noWrap>
-    <TextInput label="Schulaufsicht" bind:value={school.supervisor} disabled />
-    <TextInput label="Rechtsstellung" bind:value={school.legal} disabled />
+    <TextInput label={$t('school.supervisor')} value={$application.school?.supervisor || null} disabled />
+    <TextInput label={$t('school.legal')} value={$application.school?.legal || null} disabled />
   </Group>
 
-  <TextInput label="Name der Schule" bind:value={school.name} disabled />
-  <TextInput label="Straße & Hausnummer" bind:value={school.street} disabled />
+  <TextInput label={$t('school.name')} value={$application.school?.name || null} disabled />
+  <TextInput label={$t('school.street')} value={$application.school?.street || null} disabled />
 
   <Group grow noWrap>
-    <TextInput label="Postleitzahl" bind:value={school.zipcode} disabled />
-    <TextInput label="Ort" bind:value={school.city} disabled />
+    <TextInput label={$t('school.zip')} value={$application.school?.zipcode || null} disabled />
+    <TextInput label={$t('school.city')} value={$application.school?.city || null} disabled />
   </Group>
 
   <Group grow noWrap>
-    <TextInput label="E-Mail" bind:value={school.email} disabled />
-    <TextInput label="Telefonnummer" bind:value={school.phone} disabled />
+    <TextInput label={$t('school.email')} value={$application.school?.email || null} disabled />
+    <TextInput label={$t('school.phone')} value={$application.school?.phone || null} disabled />
   </Group>
 
-  <TextInput label="Name der Schulleitung" required name="principal_name" />
-  <TextInput label="E-Mail der Schulleitung" required name="principal_email" />
+  <TextInput label={$t('school.principal.name')} bind:value={principal.name} required />
+  <TextInput label={$t('school.principal.email')} bind:value={principal.email} required />
 </Stack>
