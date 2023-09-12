@@ -1,10 +1,16 @@
 <script lang="ts">
-  import { Group, NativeSelect, NumberInput } from "@svelteuidev/core";
+  import { Group, NativeSelect, NumberInput, TextInput } from "@svelteuidev/core";
   import { material_options } from "../utils/constants";
   import { type Material } from "../types";
-  import { currencyFormater } from "../utils/utils";
   import { application } from "../utils/service";
+  import { c } from "../utils/i18n";
   export let material: Material;
+  let text: any = 0;
+
+  function handleBlur() {
+    material.cost = parseFloat(text.replaceAll(".", "").replaceAll(",", "."))
+    text = c(material.cost);
+  }
 </script>
 
 <Group spacing="md" grow noWrap>
@@ -19,21 +25,12 @@
       $application = $application;
     }}
   />
-  <NumberInput
+  <TextInput
     label="voraussichtlicher Gesamtbetrag der Sachkosten (in €)"
     placeholder="0,00€"
-    min={0}
-    precision={2}
-    decimalSeparator=","
-    formatter={(value) => {
-      value = value?.replace(",", ".");
-      if (!value || value == "" || isNaN(parseFloat(value || "0")))
-        return value || "";
-      return currencyFormater.format(parseFloat(value));
-    }}
     disabled={material.type === material_options[0]}
     required={material.type !== material_options[0]}
-    bind:value={material.cost}
-    on:change={() => ($application = $application)}
+    bind:value={text}
+    on:blur={handleBlur}
   />
 </Group>
