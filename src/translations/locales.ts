@@ -1,0 +1,1 @@
+export * as de_DE from './de_DE';
