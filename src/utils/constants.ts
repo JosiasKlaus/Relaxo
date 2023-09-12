@@ -1,31 +1,3 @@
-/* Data models / types */
-export type School = {
-    type?: string;
-    supervisor?: string;
-    legal?: string;
-    name?: string;
-    street?: string;
-    zipcode?: string;
-    city?: string;
-    email?: string;
-    phone?: string;
-}
-
-export type Staff = {
-    prefix: string;
-    type?: string;
-    hours?: number;
-    cost?: number,
-    percentage?: number,
-    months?: string[]
-}
-
-export type Material = {
-    prefix: string;
-    type?: string;
-    cost?: number;
-}
-
 /* Predefined select options */
 export const year_options = [
     "2023", "2024"
@@ -35,9 +7,9 @@ export const type_options = [
     "Zusätzliche Förderkurse",
     "Eine individuelle Lernbegleitung im Unterricht",
     "Unterricht in einem über die Stundentafel hinausgehenden Umfang",
-    "Eine Hausaufgabenbetreuung",
-    "Eine organisierte (Online-) Nachhilfe",
-    'Eine zweiteilige Teilung von Lerngruppen (sog. "Doppelsteckung")',
+    "Hausaufgabenbetreuung",
+    "organisierte (Online-) Nachhilfe",
+    'zweiteilige Teilung von Lerngruppen (sog. "Doppelsteckung")',
     "Kulturelle Angebote",
     "Gelegenheiten zur körperlichen Bewegung",
     "Sozialpädagogische und psychologische Unterstützung",
