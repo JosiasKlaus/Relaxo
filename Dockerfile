@@ -1,5 +1,6 @@
 FROM node:lts as build
 ARG VITE_BACKEND_URL
+ARG VITE_LOGIN_PASSWORD
 WORKDIR /app
 
 # Add and install dependencies
