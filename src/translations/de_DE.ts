@@ -52,4 +52,8 @@ export default {
     "footer.address": "Hessisches Kultusministerium, Referat II 2, Luisenplatz 10, 65185 Wiesbaden",
     "footer.notice": "Die Durchführung aller Angebote steht unter dem Vorbehalt der im Haushalt verfügbaren Mittel des aktuellen Haushaltsjahres. Bei der Antragsprüfung wird das Datum des elektronischen Eingangs im Hessischen Kultusministerium berücksichtigt.",
     "footer.button.send": "Antrag absenden",
+    "login.title": "Antragsformular Löwenstark",
+    "login.intro": "Bitte geben Sie das Passwort ein, um das Formular zu öffnen.",
+    "login.password": "Passwort",
+    "login.submit": "Formular öffnen",
 }

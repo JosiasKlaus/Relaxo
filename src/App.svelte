@@ -1,7 +1,17 @@
 <script lang="ts">
-  import { ActionIcon, Container, Divider, Group, Space, SvelteUIProvider, Text, colorScheme } from "@svelteuidev/core";
+  import {
+    ActionIcon,
+    Center,
+    Container,
+    Divider,
+    Group,
+    Space,
+    SvelteUIProvider,
+    Text,
+    colorScheme,
+  } from "@svelteuidev/core";
   import { Moon, Sun } from "radix-icons-svelte";
-  import { downloadBlob, submitFormData } from "./utils/service";
+  import { downloadBlob, loggedin, submitFormData } from "./utils/service";
   import { application } from "./utils/service";
   import { onMount } from "svelte";
 
@@ -9,18 +19,21 @@
   import School from "./views/School.svelte";
   import EntryGroup from "./views/EntryGroup.svelte";
   import Footer from "./views/Footer.svelte";
-  
+  import Login from "./views/Login.svelte";
+
   function onSubmit() {
-    submitFormData($application).then((response) => {
-      downloadBlob(response);
-    }).catch((error) => {
-      alert(error);
-    });
+    submitFormData($application)
+      .then((response) => {
+        downloadBlob(response);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   // Make sure to create the first (required) entry
   onMount(() => {
-    $application.entries = [{ material: [{}], staff: [{}], summary: {}}];
+    $application.entries = [{ material: [{}], staff: [{}], summary: {} }];
   });
 </script>
 
@@ -31,26 +44,39 @@
 
 <!-- Main application context -->
 <SvelteUIProvider withNormalizeCSS>
-  <Container size={768} style="padding: 4rem 4rem;">
-    <Header />
-    <Space h="xl" />
-    <Divider label="Schulinformationen" labelPosition="center" />
-    <Space h="xl" />
-    <School />
-    <EntryGroup />
-    <Space h="xl" />
-    <Divider label="Zusammenfassung" labelPosition="center" />
-    <Footer on:submit={onSubmit} />
-  </Container>
-  <Group position="center">
-    <ActionIcon variant="light" on:click={() => $colorScheme = $colorScheme === "light" ? "dark" : "light"}>
-      {#if $colorScheme === "light"}<Moon />{:else}<Sun />{/if}
-    </ActionIcon>
-    <Text size="sm" color="dimmed">
-      Designt, Entwickelt und Betrieben von © 2022 Josias Klaus
-    </Text>
-  </Group>
-  <Space h="md" />
+  {#if $loggedin}
+    <Container size={768} style="padding: 4rem 4rem;">
+      <Header />
+      <Space h="xl" />
+      <Divider label="Schulinformationen" labelPosition="center" />
+      <Space h="xl" />
+      <School />
+      <EntryGroup />
+      <Space h="xl" />
+      <Divider label="Zusammenfassung" labelPosition="center" />
+      <Footer on:submit={onSubmit} />
+    </Container>
+    <Group position="center">
+      <ActionIcon
+        variant="light"
+        on:click={() =>
+          ($colorScheme = $colorScheme === "light" ? "dark" : "light")}
+      >
+        {#if $colorScheme === "light"}<Moon />{:else}<Sun />{/if}
+      </ActionIcon>
+      <Text size="sm" color="dimmed">
+        Designt, Entwickelt und Betrieben von © 2022 Josias Klaus
+      </Text>
+    </Group>
+    <Space h="md" />
+  {:else}
+    <Center>
+      <Container size={768} style="padding: 4rem 4rem; height:100%;">
+        <Login />
+      </Container>
+    </Center>
+  {/if}
+  
 </SvelteUIProvider>
 
 <!-- Make sure required indicator is red and  -->
