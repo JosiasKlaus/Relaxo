@@ -19,7 +19,7 @@
 
 <Stack spacing="sm">
   <NativeSelect
-    label={$t('entry.type.label')} placeholder={$t('select.placeholder')}
+    label={$t('entry.year.label')} placeholder={$t('select.placeholder')}
     data={year_options} bind:value={entry.year} on:change={() => $application = $application} required
   />
   <OtherSelect
