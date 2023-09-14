@@ -1,7 +1,7 @@
 export default {
     "header.title": "Antragsformular Löwenstark",
     "header.intro": "Das Hessische Landesprogramm „Löwenstark – der BildungsKICK“ unterstützt Schülerinnen und Schüler dabei, die entstandenen Lernrückstände infolge der Corona-Pandemie zu kompensieren. Zu Beginn des Schuljahres 2023/2024 besteht für öffentliche Schulen die Möglichkeit, zusätzliche Mittel bis 31.08.2024 (für Personal- und Sachkosten) zur Kompensation pandemiebedingter Förderbedarfe zu beantragen.",
-    "header.notice": "Bitte beachten Sie, dass für die Verausgabung der beantragten Mittel grundsätzlich der Erlass vom 01.08.2023 „Dezentrale Kompensationsmaßnahmen für pandemiebedingte Förderbedarfe“ gilt. Damit diese über das zweckgebundene Budget finanziert werden kann. Eine Abstimmung mit dem zuständigen Staatlichen Schulamt ist erforderlich. Nicht verausgabte Mittel werden voraussichtlich zum Ende des Schuljahres 2023/2024 zurückgezogen.",
+    "header.notice": "Bitte beachten Sie, dass für die Verausgabung der beantragten Mittel grundsätzlich der Erlass vom 01.08.2023 „Dezentrale Kompensationsmaßnahmen für pandemiebedingte Förderbedarfe“ gilt. Eine Abstimmung mit dem zuständigen Staatlichen Schulamt ist erforderlich. Nicht verausgabte Mittel werden voraussichtlich zum Ende des Schuljahres 2023/2024 zurückgezogen.",
     "school.alert": "Die angegebene Schulnummer ist entweder nicht gültig oder ein Fehler bei der Serverkommunikation ist Aufgetreten. Bitte überprüfen Sie Ihre Eingabe oder versuchen Sie es später erneut. Sollte der Fehler weiterhin bestehen, wenden Sie sich bitte an den Support.",
     "school.number": "Schulnummer",
     "school.number.placeholder": "0001",
@@ -34,19 +34,12 @@ export default {
     "entry.cost.notice": "Bitte beachten Sie, dass der Durchschnittswert ausschließlich als Grundlage zur Berechnung dient und nicht das zu erwartende Gehalt der jeweiligen Personen darstellt.",
     "entry.cost.button.staff": "Weiteres Personal hinzufügen",
     "entry.cost.button.material": "Weitere Sachkosten hinzufügen",
-
-
-
-
     "select.placeholder": "Bitte auswählen",
-
     "cost.title": "Kosten für das Jahr {{year}}",
     "cost.staff": "Personalkosten",
     "cost.surcharge": "(inkl. 15% Aufschlag)",
     "cost.material": "Sachkosten",
     "cost.total": "Gesamtkosten",
-
-
     "footer.title": "Hiermit beantrage ich für die Umsetzung des Landesprogramms „Löwenstark - der BildungsKICK“ zusätzliche Mittel in Höhe von",
     "footer.address.title": "Bitte senden Sie das Formular nach dem Ausfüllen ab. Drucken Sie das Formular aus und senden Sie den unterschriebenen Ausdruck an:",
     "footer.address": "Hessisches Kultusministerium, Referat II 2, Luisenplatz 10, 65185 Wiesbaden",
