@@ -4,6 +4,7 @@
     import { t } from "../utils/i18n";
     import CostDisplay from "../components/CostDisplay.svelte";
     import { createEventDispatcher } from "svelte";
+    import { terms } from "../utils/service";
     const dispatch = createEventDispatcher();
 </script>
 
@@ -31,7 +32,7 @@
     <Space h="md" />
     <Stack spacing="xl">
         <Group noWrap>
-            <Checkbox name="terms_and_conditions" value="true" />
+            <Checkbox bind:checked={$terms} />
             <Text>Ich habe die
                 <Text
                     color="blue" variant="link" root="a"

@@ -12,7 +12,7 @@
   } from "@svelteuidev/core";
   import { Moon, Sun } from "radix-icons-svelte";
   import { downloadBlob, loggedin, submitFormData } from "./utils/service";
-  import { application } from "./utils/service";
+  import { application, terms } from "./utils/service";
   import { onMount } from "svelte";
 
   import Header from "./views/Header.svelte";
@@ -22,6 +22,11 @@
   import Login from "./views/Login.svelte";
 
   function onSubmit() {
+    if(!$terms) {
+      alert("Bitte akzeptieren Sie die Datenschutzbestimmungen.");
+      return;
+    }
+    
     submitFormData($application)
       .then((response) => {
         downloadBlob(response);

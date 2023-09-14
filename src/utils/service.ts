@@ -5,6 +5,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/a
 
 export let application = writable({} as Application);
 export let loggedin = writable(false);
+export let terms = writable(false);
 export const cost_map = writable(new Map<Entry, { staff: number, material: number}>())
 
 export async function getSchoolInfo(schoolNumber: string) {
