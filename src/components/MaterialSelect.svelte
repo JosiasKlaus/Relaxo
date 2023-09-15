@@ -10,6 +10,7 @@
   function handleBlur() {
     material.cost = parseFloat(text.replaceAll(".", "").replaceAll(",", "."))
     text = c(material.cost);
+    $application = $application;
   }
 </script>
 
