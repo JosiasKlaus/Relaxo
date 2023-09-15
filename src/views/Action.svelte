@@ -65,7 +65,7 @@
   </Button>
   <Space />
   <NumberInput
-    label={$t('entry.staff.label')} placeholder="0"
+    label={$t('entry.staff.label', { index: index + 1 })} placeholder="0"
     description={$t('entry.staff.description')}
     value={entry.staff_count} disabled
   />
