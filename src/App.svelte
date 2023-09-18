@@ -11,7 +11,7 @@
     colorScheme,
   } from "@svelteuidev/core";
   import { Moon, Sun } from "radix-icons-svelte";
-  import { downloadBlob, loggedin, submitFormData } from "./utils/service";
+  import { downloadBlob, loggedin, submitFormData, validateApplication } from "./utils/service";
   import { application, terms } from "./utils/service";
   import { onMount } from "svelte";
 
@@ -24,6 +24,13 @@
   function onSubmit() {
     if(!$terms) {
       alert("Bitte akzeptieren Sie die Datenschutzbestimmungen.");
+      return;
+    }
+
+    try {
+      validateApplication($application);
+    } catch (error) {
+      alert(error);
       return;
     }
     
