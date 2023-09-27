@@ -11,7 +11,12 @@
     colorScheme,
   } from "@svelteuidev/core";
   import { Moon, Sun } from "radix-icons-svelte";
-  import { downloadBlob, loggedin, submitFormData, validateApplication } from "./utils/service";
+  import {
+    downloadBlob,
+    loggedin,
+    submitFormData,
+    validateApplication,
+  } from "./utils/service";
   import { application, terms } from "./utils/service";
   import { onMount } from "svelte";
 
@@ -20,9 +25,12 @@
   import EntryGroup from "./views/EntryGroup.svelte";
   import Footer from "./views/Footer.svelte";
   import Login from "./views/Login.svelte";
+  import Success from "./views/Success.svelte";
+
+  let SUCCESS: boolean = false;
 
   function onSubmit() {
-    if(!$terms) {
+    if (!$terms) {
       alert("Bitte akzeptieren Sie die Datenschutzbestimmungen.");
       return;
     }
@@ -33,7 +41,8 @@
       alert(error);
       return;
     }
-    
+
+    SUCCESS = true;
     submitFormData($application)
       .then((response) => {
         downloadBlob(response);
@@ -56,7 +65,14 @@
 
 <!-- Main application context -->
 <SvelteUIProvider withNormalizeCSS>
-  {#if $loggedin}
+  {#if !$loggedin}
+    <Center>
+      <Container size={768} style="padding: 4rem 4rem; height:100%;">
+        <Login />
+      </Container>
+    </Center>
+  {:else}
+  {#if !SUCCESS}
     <Container size={768} style="padding: 4rem 4rem;">
       <Header />
       <Space h="xl" />
@@ -82,13 +98,11 @@
     </Group>
     <Space h="md" />
   {:else}
-    <Center>
-      <Container size={768} style="padding: 4rem 4rem; height:100%;">
-        <Login />
-      </Container>
-    </Center>
+    <Container size={768} style="padding: 4rem 4rem;">
+      <Success />
+    </Container>
   {/if}
-  
+  {/if}
 </SvelteUIProvider>
 
 <!-- Make sure required indicator is red and  -->
